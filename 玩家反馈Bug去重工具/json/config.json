@@ -1,0 +1,67 @@
+{
+  "rawdata_dir_name": "rawdata",
+  "cleandata_dir_name": "cleandata",
+  "output_filename": "cleaned_bug_feedback.xlsx",
+  "isTest": true,
+  "deduplication_thresholds": {
+    "simple_dedup": "first",
+    "semantic_dedup": 0.75
+  },
+  "embedding_model": "moka-ai/m3e-base",
+  "embedding_dir": "embeddings",
+  "embedding_local_dir": "",
+  "dbscan_settings": {
+    "eps": 0.05,
+    "min_samples": 2,
+    "noise_ratio_threshold": 0.1,
+    "eps_step": 0.02,
+    "max_eps": 0.25,
+    "comment": "eps是距离阈值(1-相似度)，越小越严格；noise_ratio_threshold为多轮聚类可接受的噪点占比上限"
+  },
+  "hdbscan_settings": {
+    "min_cluster_size": 2,
+    "min_samples": null,
+    "cluster_selection_epsilon": 0.0,
+    "comment": "HDBSCAN配置: min_cluster_size为最小簇大小; cluster_selection_epsilon可设为非0值以合并微小簇(类似DBSCAN的eps)"
+  },
+  "clustering_settings": {
+    "target_group_size": 10,
+    "max_clusters": 35
+  },
+  "llm_settings": {
+    "enabled": true,
+    "ai_analyze_threshold": 10,
+    "ai_cohesion_threshold": 0.95,
+    "app_id": "fob3ubx6yv5jxjag",
+    "app_key": "x55ll082jpilelrdvv57lt1ocoao726v",
+    "base_url": "https://aigw.nie.netease.com/v1",
+    "model": "glm-4.5-flash",
+    "timeout": 120,
+    "max_retries": 3
+  },
+  "column_mapping": {
+    "QData": {
+      "subject": [
+        "内容"
+      ],
+      "image": [
+        "图片"
+      ],
+      "time": "时间"
+    },
+    "BugFeedback": {
+      "subject": [
+        "主题"
+      ],
+      "image": [
+        "URL"
+      ],
+      "time": "反馈时间"
+    }
+  },
+  "last_processed_records": {
+    "QData": "2025-12-16 23:53:24",
+    "BugFeedback": "2025-12-16 23:06:55"
+  },
+  "config_hash": "f65a700340572c3eafc89c779a28f968"
+}
