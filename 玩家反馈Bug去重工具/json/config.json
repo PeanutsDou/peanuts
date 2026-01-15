@@ -1,43 +1,51 @@
 {
+  "_comment_global": "本配置文件用于控制玩家反馈Bug去重工具的各项参数。",
   "rawdata_dir_name": "rawdata",
+  "_desc_rawdata": "原始数据文件夹名称，存放待处理的Excel/CSV文件。",
   "cleandata_dir_name": "cleandata",
+  "_desc_cleandata": "结果输出文件夹名称，存放清洗和去重后的结果。",
   "output_filename": "cleaned_bug_feedback.xlsx",
+  "_desc_output": "数据清洗阶段的中间结果文件名。",
   "isTest": true,
+  "_desc_isTest": "测试模式开关。True=处理所有数据且不更新时间戳；False=仅处理增量数据并更新时间戳。",
   "deduplication_thresholds": {
     "simple_dedup": "first",
-    "semantic_dedup": 0.75
+    "semantic_dedup": 0.75,
+    "keyword_dedup": 0.75,
+    "_desc": "去重阈值配置。semantic_dedup为difflib相似度阈值(0-1)。keyword_dedup为关键词去重阶段的相似度阈值。"
   },
   "embedding_model": "moka-ai/m3e-base",
+  "_desc_model": "使用的HuggingFace嵌入模型名称。",
   "embedding_dir": "embeddings",
+  "_desc_emb_dir": "存放向量化结果(.npy)的文件夹。",
   "embedding_local_dir": "",
+  "_desc_local_model": "可选：本地模型路径。若设置且有效，将优先使用本地模型而非从HF下载。",
   "dbscan_settings": {
-    "eps": 0.05,
+    "eps": 0,
     "min_samples": 2,
     "noise_ratio_threshold": 0.1,
     "eps_step": 0.02,
     "max_eps": 0.25,
-    "comment": "eps是距离阈值(1-相似度)，越小越严格；noise_ratio_threshold为多轮聚类可接受的噪点占比上限"
+    "_desc": "DBSCAN聚类参数。eps: 距离阈值(1-相似度)；min_samples: 最小簇样本数。"
   },
-  "hdbscan_settings": {
-    "min_cluster_size": 2,
-    "min_samples": null,
-    "cluster_selection_epsilon": 0.0,
-    "comment": "HDBSCAN配置: min_cluster_size为最小簇大小; cluster_selection_epsilon可设为非0值以合并微小簇(类似DBSCAN的eps)"
-  },
-  "clustering_settings": {
-    "target_group_size": 10,
-    "max_clusters": 35
+  "kmeans_settings": {
+    "enabled": true,
+    "n_clusters": 10,
+    "target_batch_size": 70,
+    "_desc": "K-Means粗略分区参数。enabled: 是否启用；n_clusters: 默认分区数；target_batch_size: 期望的单批次大小(如果启用自动计算)。"
   },
   "llm_settings": {
     "enabled": true,
     "ai_analyze_threshold": 10,
-    "ai_cohesion_threshold": 0.95,
+    "ai_cohesion_threshold": 0.93,
     "app_id": "fob3ubx6yv5jxjag",
     "app_key": "x55ll082jpilelrdvv57lt1ocoao726v",
     "base_url": "https://aigw.nie.netease.com/v1",
     "model": "glm-4.5-flash",
+    "review_model": "deepseek-v3.2-latest",
     "timeout": 120,
-    "max_retries": 3
+    "max_retries": 3,
+    "_desc": "LLM大模型配置。enabled: 是否启用AI功能；threshold: 触发AI分析的簇大小/内聚度阈值。review_model: 聚类复查阶段使用的快速模型。"
   },
   "column_mapping": {
     "QData": {
@@ -57,11 +65,12 @@
         "URL"
       ],
       "time": "反馈时间"
-    }
+    },
+    "_desc": "不同数据源的列名映射配置。"
   },
   "last_processed_records": {
-    "QData": "2025-12-16 23:53:24",
-    "BugFeedback": "2025-12-16 23:06:55"
+    "QData": "2000-01-01 00:00:00",
+    "BugFeedback": "2000-01-01 00:00:00"
   },
-  "config_hash": "f65a700340572c3eafc89c779a28f968"
+  "config_hash": "f657b1b049be784164b8c45746130d70"
 }

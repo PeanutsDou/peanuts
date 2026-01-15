@@ -1,0 +1,251 @@
+{
+    "old_accountid":"aebfu4uesuxshxv3@ad.netease.win.163.com","sys_lang":"zh","occupation":34,"role_level":27,"scene":219,"user_no":11059014,"extra_debug_info":{
+    "react_data":{
+    "allow_react":true,"plant_tool_id":0,"react_entities":"[]","can_skip_scene_react":false,"weapon_allow":true,"PanelObjectReact":{
+    "vis":false,"item_data_len":0,"active_and_loaded":false}},"buff_str":"[13420, 13266, 11469, 13209, 5263, 5075, 16758, 9712, 10082, 10088, 10090, 9450, 16672, 9474, 18455, 21562, 10230, 11568, 9350, 10060, 9446, 9043, 10280, 10059, 9443, 10260, 13341, 18855, 10058, 9462, 10210, 11258, 10050, 10966, 9451, 10290, 10240, 13342, 10057, 9464, 13310, 9469, 10066, 10710, 10964, 10056, 16673, 9041, 9473, 9449, 10220, 11605, 9331, 10053, 10061, 9452, 10270, 10055, 10250, 13742, 9310, 10200, 9465, 11257, 9471, 9472, 10965, 10711, 5321, 10685, 10686, 18343, 18346, 11592, 18347, 18358, 11413, 5022, 9340, 9300, 16334, 17143, 10675, 18580, 11422, 13610, 13607, 18305, 14212, 20901, 5211, 9733]","mini_map":{
+    "maps":[[true,"ui/bigmap/pve35.png"],[true,"ui/bigmap/pve35.png"],[true,"ui/bigmap/pve35.png"],[true,"ui/bigmap/pve35.png"]],"pos":[[0.0,0.0],[-548.2603759765625,-395.5269775390625,151.7396240234375,304.4730224609375],[-1427,-1335],[0.2685714364051819,0.2685714364051819]]},"active_false_type":6,"btn_cancel_hide_reason":"WeaponComp.update_weapon_aimcross(False)","jump_word_show_type":0,"tmp_select_cost_equip_id":"","illuminate_btn_info":{
+    "use_fold_optional_buttons":true,"is_disguise_state":false,"ygb_light_enable":false,"illuminate_btn":"None","player_point_light_time":[69000,21000],"light_mission_finished":true,"PanelControl_show":true,"time_in_a_day":-1,"is_na_ui":false,"task_light_id":0,"ygb_light_intensity":0.0,"is_in_nigth":false},"sign_vis":[[],[]],"lock_info":{
+    "lock_input":"op({})atk(0)move({})move_op(set())move_dir({})move_ctrl({})rotate({})switch(0)jump({})","lock_attr":"op(0)atk(0)atk_gm(0)move(0)reload(0)run(0)switch(0)"},"space":"spaceno(219) BattleEntity(aUFHUk4MMCP8OGqh)","client_record":{
+    "filename":"20251216183822-990094-白玲⼺玖枫-ad_55.vd","during_time":104.81294250488281,"need_upload":[true,["player_test","suggest"]],"url":"https://jarvis-ui.nie.netease.com/G66/case-management?menu_id=cm&q=20251216183822-990094-%E7%99%BD%E7%8E%B2%E2%BC%BA%E7%8E%96%E6%9E%AB-ad_55.vd"},"trace_infos":{},"quality_config":"{'bw_engine': True, 'player_num': 0.9, 'enemy_limit_num': 25, 'friend_limit_num': 15, 'hidden_tatic_sfx': 0, 'hidden_flamethrower_sfx': 0, 'hidden_diffuser_sfx': 0, 'render_2020': 2, 'bloom_enhance': 1, 'render': 4, 'last_quality_level': 4, 'dynamic_shadow': False, 'transparent_shadow': True, 'lighting_rendering': 1, 'quality': -1, 'contrast_enhancement': 1, 'color_grading': 0, 'home_render_budget': 1, 'scene_sfx_performance': 0, 'main_player_sfx_performance': 0, 'other_player_sfx_performance': 0, 'fsr_postprocess': 0, 'hidden_specific_shrub': 0, 'dynamic_hide_bobj': False, 'frame': 2, 'preset_mode': -1, 'surface_reflection': 0, 'same_appear_hint': 1, 'anti_alias_mobile': 1, 'blurred_distant_view': 0, 'light': 3, 'shadow': 3, 'z_far': 1.0, 'hide_building': 0, 'plant': 4, 'dynamic_pvp_rule': 1, 'sfx_performance_new': 0, 'monster_quality_upgrade_hit_sfx': 0, 'long_shadow': 0, 'shadow_distance': 0, 'ocean_depth': 0}","light_type":"1","preset_info":{
+    "PanelSOS":{},"PanelEmergencyRescueMain":{},"PanelWeapons":{
+    "pnl_roulette":{
+    "dif_by_init_data":false,"x":1182.0,"scale":0.9950000047683716,"y":375.0,"opacity":255},"pnl_weapon_current_item":{
+    "x":458.0,"scale":1.2050000429153442,"y":383.0,"opacity":255},"pnl_roulette_weapon_comp":{
+    "dif_by_init_data":false,"x":458.0,"scale":1.0,"y":360.0,"opacity":255},"pnl_weapon_list_content":{
+    "x":-77.0,"scale":1.2649999856948853,"y":-23.0,"opacity":255}},"PanelIlluminate":{},"PanelTopLeftInfomationSwitch":{},"PanelGiveEntry":{
+    "pnl_main_give":{
+    "x":393.0,"scale":1.0,"y":-57.0,"opacity":255}},"PanelSettingEntry":{
+    "pnl_btn_shezhi":{
+    "x":4.0,"scale":1.0,"y":-37.0,"opacity":255}},"PanelBuildingMenu":{
+    "pnl_close":{
+    "dif_by_init_data":false,"x":12.0,"scale":1.0,"y":8.0,"opacity":255}},"PanelSameAppearTips":{},"PanelCarPort":{
+    "pnl_cheku":{
+    "x":515.0,"scale":1.0549999475479126,"y":543.0,"opacity":255}},"PanelTeamGatherBtn":{
+    "pnl_xianshi_content":{
+    "dif_by_init_data":false,"x":380.0,"scale":0.9950000047683716,"y":124.0,"opacity":255},"panel_jihecaozuo":{
+    "dif_by_init_data":false,"x":97.0,"scale":1.0,"y":122.0,"opacity":255}},"PanelBagEntry":{
+    "btn_icon_08":{
+    "x":37.0,"scale":1.159999966621399,"y":64.0,"opacity":255},"btn_icon_01":{
+    "x":128.0,"scale":1.1299999952316284,"y":49.0,"opacity":255},"btn_icon_02":{
+    "x":37.0,"scale":1.159999966621399,"y":64.0,"opacity":255},"btn_icon_03":{
+    "x":32.0,"scale":1.0,"y":165.0,"opacity":255},"btn_icon_04":{
+    "x":546.0,"scale":1.0399999618530273,"y":675.0,"opacity":255}},"PanelPetTopRight":{
+    "pnl_pet":{
+    "x":407.0,"scale":1.2949999570846558,"y":732.0,"opacity":255}},"PanelGraphicsQualityTips":{},"PanelCaptureEntry":{
+    "pnl_btn_paizhao":{
+    "x":-479.0,"scale":1.0,"y":120.0,"opacity":255}},"PanelFrameTips":{},"PanelSkinRecover":{},"PanelHideDotSfxTips":{},"PanelDynamicAoiTips":{},"PanelBuildingRepair":{},"PanelSystemGuideTips":{},"InvestMainEntry":{},"PanelCabin":{
+    "pnl_wurenji":{
+    "x":1488.0,"scale":1.1150000095367432,"y":372.0,"opacity":255},"pnl_jicang":{
+    "x":1207.0,"scale":1.1150000095367432,"y":548.0,"opacity":255}},"PanelPlayerGhoulBtn":{},"PanelNASimpleSocialMain":{},"PanelBtnMedicine":{
+    "panel_zhankai":{
+    "x":10.0,"scale":1.2050000429153442,"y":90.0,"opacity":255},"btn_medicine":{
+    "x":-68.0,"scale":1.1449999809265137,"y":2.0,"opacity":255}},"PanelXinShouSocialMain":{},"PanelHelicopterVehicleControl":{},"PanelChat":{
+    "pnl_chat":{
+    "dif_by_init_data":false,"x":-177.0,"scale":1.2799999713897705,"y":-10.0,"opacity":255}},"PanelSignalBattery":{},"PanelSocialMain":{
+    "pnl_icon":{
+    "x":147.0,"scale":1.0,"y":20.0,"opacity":255}},"SwitchViewBtn":{},"CommanderSkillBtn":{},"PanelSocialTips":{},"PanelDroneControl":{},"PanelCollectLicenseEntry":{
+    "pnl_btn_kaicai":{
+    "x":-338.0,"scale":1.0,"y":21.0,"opacity":255}},"PanelMissionTips":{
+    "pnl_shipei":{
+    "x":-4.0,"scale":1.0,"y":-34.0,"opacity":255}},"PanelHideBobjTips":{},"PanelMiniMap":{
+    "pnl_map_item01":{
+    "x":-629.0,"scale":1.1299999952316284,"y":-30.0,"opacity":255}},"BtnBlueBrid":{},"PanelOxygen":{},"PanelBlueBridTips":{},"PanelUnzipSuccessTips":{},"PanelHead":{
+    "panel_rolestate":{
+    "x":-8.0,"scale":1.534999966621399,"y":-46.0,"opacity":255}},"PanelBuildingUnlockModule":{},"PanelCCMini":{},"PanelDroneSwitchEdit":{},"PanelControl":{
+    "btn_mangju":{
+    "dif_by_init_data":false,"x":-396.0,"scale":1.100000023841858,"y":492.0,"opacity":255},"pnl_shiyong":{
+    "dif_by_init_data":false,"x":-30.0,"scale":1.399999976158142,"y":482.0,"opacity":255},"pnl_btn_qiehuan":{
+    "dif_by_init_data":false,"x":1327.0,"scale":1.4600000381469727,"y":401.0,"opacity":255},"btn_crouch":{
+    "x":1193.0,"scale":2.0,"y":65.0,"opacity":255},"btn_reload":{
+    "dif_by_init_data":false,"x":-256.0,"scale":1.2350000143051147,"y":223.0,"opacity":255},"pnl_free_view":{
+    "dif_by_init_data":false,"x":736.0,"scale":1.0,"y":382.0,"opacity":255},"pnl_btn_shot_left":{
+    "dif_by_init_data":false,"x":80.0,"scale":1.340000033378601,"y":353.0,"opacity":255},"btn_fuwuqi":{
+    "dif_by_init_data":false,"x":-235.0,"scale":1.3849999904632568,"y":369.0,"opacity":255},"btn_xuli":{
+    "x":12.0,"scale":1.0,"y":440.0,"opacity":255},"pnl_gongnengtubiao":{
+    "x":690.0,"scale":1.159999966621399,"y":197.0,"opacity":255},"btn_jump":{
+    "dif_by_init_data":false,"x":124.0,"scale":2.0,"y":298.0,"opacity":255},"pnl_wurenji_jineng02":{
+    "dif_by_init_data":false,"x":-248.0,"scale":1.0,"y":529.0,"opacity":255},"pnl_btn_zhuangbei":{
+    "dif_by_init_data":false,"x":-278.0,"scale":1.0,"y":498.0,"opacity":255},"pnl_jineng_zu":{
+    "btn_jineng_07":{
+    "x":-928.0,"scale":1.0399999618530273,"y":421.0,"opacity":255}},"btn_attack":{
+    "dif_by_init_data":false,"x":-47.0,"scale":1.5049999952316284,"y":259.0,"opacity":255},"pnl_wurenji_jineng":{
+    "dif_by_init_data":false,"x":-251.0,"scale":0.949999988079071,"y":527.0,"opacity":255},"pnl_gongnengtubiao_v1":{
+    "dif_by_init_data":false,"x":712.0,"scale":1.0,"y":214.0,"opacity":255},"pnl_beijing":{
+    "x":102.0,"scale":1.0,"y":254.0,"opacity":255},"btn_liudanpao":{
+    "dif_by_init_data":false,"x":-134.0,"scale":1.0,"y":457.0,"opacity":255},"pnl_danyaoxiang":{
+    "x":284.0,"scale":0.5,"y":22.0,"opacity":26},"panel_move":{
+    "dif_by_init_data":false,"x":267.0,"scale":1.4600000381469727,"y":216.0,"opacity":255},"pnl_yijian_list":{
+    "dif_by_init_data":false,"x":405.0,"scale":1.0,"y":206.0,"opacity":255},"btn_cancel":{
+    "x":474.0,"scale":1.1299999952316284,"y":458.0,"opacity":255},"btn_dingdian":{
+    "x":1437.0,"scale":1.4900000095367432,"y":65.0,"opacity":255},"pnl_kaijing":{
+    "x":390.0,"scale":1.0,"y":481.0,"opacity":255}},"PanelVehicleControlV2":{},"PanelCommonExit":{},"CombatPowerIcon":{},"PanelThrow":{},"ChangeFashionBtn":{},"PanelBtnFishBait":{}},"battle_mission_infos":"<mission(219036, PROGRESS)\n\tquest(<CheckRefreshedSomething b(False)-quest({'monster_record_ids': (998,)})-progress({count: 1})-DebugInfo:()>)\n\tbranch_quest(None)\n>","home_storage_info":{
+    "my_locked_ui_data":0,"is_asyncing_my_ui_data":false},"render_path":"deferred","weather_time":72000.0,"enable_fec":false,"weather":"Current: weather/bigworld/weather_sm_bg24_v20.xml","ui_size":{
+    "win_width":2772,"win_height":1288,"ui_height":750,"ui_width":1615},"cc_mini_info":{
+    "cc_engine_started":true,"client_state":2,"cc_session_status":{
+    "0":2,"1":2,"3":2},"cc_engine_inited":true},"panel_control_vih_info":"{'_hide_all': 0, 'default_hide_panels': \"{'btn_transform'}\", '_hide_all_excludes': {}, 'show_fight_ui': True}","pet_panel_info":{
+    "_can_show_panel":false,"vis":false,"pnl_pet":{
+    "x_ly":{
+    "wx":407.0,"width":1440.2164306640625,"x":407.0,"h_e":0},"scale":1.2949999570846558,"y_ly":{
+    "wy":732.0,"y":732.0,"v_e":0,"height":750.0},"opacity":255},"_debug_vis_info":"force_show[False], not (is_pet_show[False] or is_drone_show[False]) and global visible[True], G.ui.is_panel_visible(PanelPetTopRight)[True]","is_active_and_loaded":true,"pnl_dog_zhuangtai":{
+    "x_ly":{
+    "wx":343.5450134277344,"width":1440.2164306640625,"x":-49.0,"h_e":0},"scale":1.0399999618530273,"y_ly":{
+    "wy":778.6199951171875,"y":84.0,"v_e":0,"height":750.0},"opacity":255},"pnl_tips02":{
+    "x_ly":{
+    "wx":151.885009765625,"width":1440.2164306640625,"x":-197.0,"h_e":0},"scale":1.024999976158142,"y_ly":{
+    "wy":830.4200439453125,"y":124.0,"v_e":0,"height":750.0},"opacity":255}},"model_priority_visible_dict":{
+    "1000":true},"client_position":[-198.2603759765625,146.28900146484375,-45.52698516845703],"can_hide_fight_ui":0,"control_btn_vis":{
+    "btn_mangju":{
+    "vis":false,"reason":"False - is_hide[False]","system_id":""},"cancel":"set()","btn_reborn_skill":{
+    "vis":false,"reason":"PanelControl._handle_target_panel_visible True-True-True-{'_hide_all': 0, 'default_hide_panels': \"{'btn_transform'}\", '_hide_all_excludes': {}, 'move_tips': (True, False, ['img_feizhu_icon', 'img_jump_feizhu_icon', 'img_feizhu_icon_s'], '')}","btn_baozi01_vis":true},"diffuser":{
+    "default":true},"reborn":{
+    "default":false},"btn_spore_use":{
+    "vis":false,"reason":"PlayerRaceBaseComp.update_reborn_spore_btn"},"btn_diffuser":{
+    "reason":"","vis":true,"pnl_shiyong_vis":true},"btn_fuwuqi":{
+    "vis":true,"reason":"","enabled":true},"tactic":{
+    "default":true}},"monster_model_info":{
+    "<AnimMissionMonster(aUFHwZHSJlBi3zsZ) monster_id=520022>":{
+    "valid":true,"priority_visible_dict":{},"visible":true,"load_time":0.21691393852233887,"alpha":255,"model":"aUFHwZHSJlBi3zsZ_model_233256","entity_position":[-329.5,180.5089874267578,-101.5999984741211],"model_position":"<-329.500000, 180.508987, -101.599998>"}},"attack_fire_info":{
+    "is_attack_btn_down":"False","current_weapon":"<'aTtWt0UFq2GtsVhy', 10584>","is_left_attack_btn_touch":"False","temp_removed_equipped":"{}","_debug_fire":"weapon_comp.begin_fire","is_attack_btn_touch":"False","is_attacking":"False","weapon_machine":"free","attack_pressed_stack":"","is_attack_btn_pressed":"False","is_auto_firing":"","is_left_attack_btn_pressed":"False","_debug_reset_weapon":"1765885631.8739789","temp_weapon":"None","is_manual_firing":"","auto_fire_condition":"None"},"physics_active":true,"model_position":[-198.2603759765625,146.28900146484375,-45.52698516845703],"state_str":"state: {} pre_add:{} pre_del:{}, sub_state: {}","UIOptionalButtons":{
+    "buttons":"[('RadioButton', Vec2(0.000000, 0.000000)), ('PetButton', Vec2(56.000000, 0.000000))]","button_states":49152,"building_btn":{
+    "control_is_showing_building_btn":false,"pms_middle_bottom_active_panels":"set()"}},"recipe_no_permision_log":{},"mission_guide_icons":[{
+    "static_pos3d":"None","icon_cls":"TalkIcon"},{
+    "static_pos3d":"None","icon_cls":"TalkIcon"},{
+    "static_pos3d":"None","icon_cls":"IntegratedInteractIcon"},{
+    "static_pos3d":"None","icon_cls":"IntegratedFollowIcon"},{
+    "static_pos3d":"None","icon_cls":"TalkIcon"},{
+    "static_pos3d":"None","icon_cls":"TalkIcon"},{
+    "static_pos3d":"None","icon_cls":"IntegratedInteractIcon"},{
+    "static_pos3d":"None","icon_cls":"TalkIcon"},{
+    "static_pos3d":"None","icon_cls":"TalkIcon"},{
+    "static_pos3d":"None","icon_cls":"TalkIcon"},{
+    "static_pos3d":"None","icon_cls":"TalkIcon"},{
+    "static_pos3d":"None","icon_cls":"TalkIcon"},{
+    "static_pos3d":"None","icon_cls":"TalkIcon"},{
+    "static_pos3d":"None","icon_cls":"IntegratedFollowIcon"},{
+    "static_pos3d":"(-547.75, 97.9000015258789, 72.79000091552734)","icon_cls":"NormalIcon"}],"pms_vih_info":"{'_hide_all': 0, 'default_hide_panels': \"{'PanelPlayerGhoulBtn'}\", '_hide_all_excludes': {}}","pp_blur_priority_dict":{},"current_trace_mission":"","ui_mgr_vis_info":{
+    "should_hide_all_uis":false,"panels":"PanelLoading,PanelSign,PanelPlayerInfoWatermark,PanelHpChangeV2,PanelBtnMedicine,PanelLoverMarquee,PanelAimCross,PanelRotateTips,PanelMainScreen,PanelWeapons,PanelObjectReact,PanelPopup,PanelHpChange,PanelLockRun,PanelClientRecordPopup,PanelMapLoading,PanelMissionGuideIndicator,PanelTopLeftInfomationSwitch,PanelTutorial,PanelPetTopRight,PanelCabin,PanelDronePos,PanelBossHp,PanelBugReportPhoto,PanelBulletScreen","_debug_flicker_info":[],"pms_invis_keys":"set()","vh_info":"{'_hide_all': 0, 'default_hide_panels': 'set()', '_hide_all_excludes': {}}","hide_all_uis_excludes":[],"debug_pms_vis":{}}},"game_uid":"game145@7.40.79.176:5040","role_id":"aTrIM/bZRGRaBapk","theme_code":"","content_len":53,"vip":8,"hostnum":20031,"screenshot_extra_info":{
+    "react_data":{
+    "allow_react":true,"plant_tool_id":0,"react_entities":"[]","can_skip_scene_react":false,"weapon_allow":true,"PanelObjectReact":{
+    "vis":false,"item_data_len":0,"active_and_loaded":false}},"buff_str":"[13420, 13266, 11469, 13209, 5263, 5075, 16758, 9712, 10082, 10088, 10090, 9450, 16672, 9474, 18455, 21562, 10230, 11568, 9350, 10060, 9446, 9043, 10280, 10059, 9443, 10260, 13341, 18855, 10058, 9462, 10210, 11258, 10050, 10966, 9451, 10290, 10240, 13342, 10057, 9464, 13310, 9469, 10066, 10710, 10964, 10056, 16673, 9041, 9473, 9449, 10220, 11605, 9331, 10053, 10061, 9452, 10270, 10055, 10250, 13742, 9310, 10200, 9465, 11257, 9471, 9472, 10965, 10711, 5321, 10685, 10686, 18343, 18346, 11592, 18347, 18358, 11413, 5022, 9340, 9300, 16334, 17143, 10675, 18580, 11422, 13610, 13607, 18305, 14212, 20901, 5211, 9733]","mini_map":{
+    "maps":[[true,"ui/bigmap/pve35.png"],[true,"ui/bigmap/pve35.png"],[true,"ui/bigmap/pve35.png"],[true,"ui/bigmap/pve35.png"]],"pos":[[0.0,0.0],[-548.2603759765625,-395.52698516845703,151.7396240234375,304.47301483154297],[-1427,-1335],[0.26857142857142857,0.26857142857142857]]},"active_false_type":6,"btn_cancel_hide_reason":"WeaponComp.update_weapon_aimcross(False)","jump_word_show_type":0,"tmp_select_cost_equip_id":"","illuminate_btn_info":{
+    "use_fold_optional_buttons":true,"is_disguise_state":false,"ygb_light_enable":false,"illuminate_btn":"None","player_point_light_time":[69000,21000],"light_mission_finished":true,"PanelControl_show":true,"time_in_a_day":-1,"is_na_ui":false,"task_light_id":0,"ygb_light_intensity":0.0,"is_in_nigth":false},"sign_vis":[[],[]],"lock_info":{
+    "lock_input":"op({})atk(0)move({})move_op(set())move_dir({})move_ctrl({})rotate({})switch(0)jump({})","lock_attr":"op(0)atk(0)atk_gm(0)move(0)reload(0)run(0)switch(0)"},"space":"spaceno(219) BattleEntity(aUFHUk4MMCP8OGqh)","client_record":{
+    "filename":"20251216183822-990094-白玲⼺玖枫-ad_55.vd","during_time":13.137117,"need_upload":[true,["player_test"]],"url":"https://jarvis-ui.nie.netease.com/G66/case-management?menu_id=cm&q=20251216183822-990094-%E7%99%BD%E7%8E%B2%E2%BC%BA%E7%8E%96%E6%9E%AB-ad_55.vd"},"trace_infos":{},"quality_config":"{'bw_engine': True, 'player_num': 0.9, 'enemy_limit_num': 25, 'friend_limit_num': 15, 'hidden_tatic_sfx': 0, 'hidden_flamethrower_sfx': 0, 'hidden_diffuser_sfx': 0, 'render_2020': 2, 'bloom_enhance': 1, 'render': 4, 'last_quality_level': 4, 'dynamic_shadow': False, 'transparent_shadow': True, 'lighting_rendering': 1, 'quality': -1, 'contrast_enhancement': 1, 'color_grading': 0, 'home_render_budget': 1, 'scene_sfx_performance': 0, 'main_player_sfx_performance': 0, 'other_player_sfx_performance': 0, 'fsr_postprocess': 0, 'hidden_specific_shrub': 0, 'dynamic_hide_bobj': False, 'frame': 2, 'preset_mode': -1, 'surface_reflection': 0, 'same_appear_hint': 1, 'anti_alias_mobile': 1, 'blurred_distant_view': 0, 'light': 3, 'shadow': 3, 'z_far': 1.0, 'hide_building': 0, 'plant': 4, 'dynamic_pvp_rule': 1, 'sfx_performance_new': 0, 'monster_quality_upgrade_hit_sfx': 0, 'long_shadow': 0, 'shadow_distance': 0, 'ocean_depth': 0}","light_type":"1","preset_info":{
+    "PanelSOS":{},"PanelEmergencyRescueMain":{},"PanelWeapons":{
+    "pnl_roulette":{
+    "dif_by_init_data":false,"x":1182.0,"scale":0.9950000047683716,"y":375.0,"opacity":255},"pnl_weapon_current_item":{
+    "x":458.0,"scale":1.2050000429153442,"y":383.0,"opacity":255},"pnl_roulette_weapon_comp":{
+    "dif_by_init_data":false,"x":458.0,"scale":1.0,"y":360.0,"opacity":255},"pnl_weapon_list_content":{
+    "x":-77.0,"scale":1.2649999856948853,"y":-23.0,"opacity":255}},"PanelIlluminate":{},"PanelTopLeftInfomationSwitch":{},"PanelGiveEntry":{
+    "pnl_main_give":{
+    "x":393.0,"scale":1.0,"y":-57.0,"opacity":255}},"PanelSettingEntry":{
+    "pnl_btn_shezhi":{
+    "x":4.0,"scale":1.0,"y":-37.0,"opacity":255}},"PanelBuildingMenu":{
+    "pnl_close":{
+    "dif_by_init_data":false,"x":12.0,"scale":1.0,"y":8.0,"opacity":255}},"PanelSameAppearTips":{},"PanelCarPort":{
+    "pnl_cheku":{
+    "x":515.0,"scale":1.0549999475479126,"y":543.0,"opacity":255}},"PanelTeamGatherBtn":{
+    "pnl_xianshi_content":{
+    "dif_by_init_data":false,"x":380.0,"scale":0.9950000047683716,"y":124.0,"opacity":255},"panel_jihecaozuo":{
+    "dif_by_init_data":false,"x":97.0,"scale":1.0,"y":122.0,"opacity":255}},"PanelBagEntry":{
+    "btn_icon_08":{
+    "x":37.0,"scale":1.159999966621399,"y":64.0,"opacity":255},"btn_icon_01":{
+    "x":128.0,"scale":1.1299999952316284,"y":49.0,"opacity":255},"btn_icon_02":{
+    "x":37.0,"scale":1.159999966621399,"y":64.0,"opacity":255},"btn_icon_03":{
+    "x":32.0,"scale":1.0,"y":165.0,"opacity":255},"btn_icon_04":{
+    "x":546.0,"scale":1.0399999618530273,"y":675.0,"opacity":255}},"PanelPetTopRight":{
+    "pnl_pet":{
+    "x":407.0,"scale":1.2949999570846558,"y":732.0,"opacity":255}},"PanelGraphicsQualityTips":{},"PanelCaptureEntry":{
+    "pnl_btn_paizhao":{
+    "x":-479.0,"scale":1.0,"y":120.0,"opacity":255}},"PanelFrameTips":{},"PanelSkinRecover":{},"PanelHideDotSfxTips":{},"PanelDynamicAoiTips":{},"PanelBuildingRepair":{},"PanelSystemGuideTips":{},"InvestMainEntry":{},"PanelCabin":{
+    "pnl_wurenji":{
+    "x":1488.0,"scale":1.1150000095367432,"y":372.0,"opacity":255},"pnl_jicang":{
+    "x":1207.0,"scale":1.1150000095367432,"y":548.0,"opacity":255}},"PanelPlayerGhoulBtn":{},"PanelNASimpleSocialMain":{},"PanelBtnMedicine":{
+    "panel_zhankai":{
+    "x":10.0,"scale":1.2050000429153442,"y":90.0,"opacity":255},"btn_medicine":{
+    "x":-68.0,"scale":1.1449999809265137,"y":2.0,"opacity":255}},"PanelXinShouSocialMain":{},"PanelHelicopterVehicleControl":{},"PanelChat":{
+    "pnl_chat":{
+    "dif_by_init_data":false,"x":-177.0,"scale":1.2799999713897705,"y":-10.0,"opacity":255}},"PanelSignalBattery":{},"PanelSocialMain":{
+    "pnl_icon":{
+    "x":147.0,"scale":1.0,"y":20.0,"opacity":255}},"SwitchViewBtn":{},"CommanderSkillBtn":{},"PanelSocialTips":{},"PanelDroneControl":{},"PanelCollectLicenseEntry":{
+    "pnl_btn_kaicai":{
+    "x":-338.0,"scale":1.0,"y":21.0,"opacity":255}},"PanelMissionTips":{
+    "pnl_shipei":{
+    "x":-4.0,"scale":1.0,"y":-34.0,"opacity":255}},"PanelHideBobjTips":{},"PanelMiniMap":{
+    "pnl_map_item01":{
+    "x":-629.0,"scale":1.1299999952316284,"y":-30.0,"opacity":255}},"BtnBlueBrid":{},"PanelOxygen":{},"PanelBlueBridTips":{},"PanelUnzipSuccessTips":{},"PanelHead":{
+    "panel_rolestate":{
+    "x":-8.0,"scale":1.534999966621399,"y":-46.0,"opacity":255}},"PanelBuildingUnlockModule":{},"PanelCCMini":{},"PanelDroneSwitchEdit":{},"PanelControl":{
+    "btn_mangju":{
+    "dif_by_init_data":false,"x":-396.0,"scale":1.100000023841858,"y":492.0,"opacity":255},"pnl_shiyong":{
+    "dif_by_init_data":false,"x":-30.0,"scale":1.399999976158142,"y":482.0,"opacity":255},"pnl_btn_qiehuan":{
+    "dif_by_init_data":false,"x":1327.0,"scale":1.4600000381469727,"y":401.0,"opacity":255},"btn_crouch":{
+    "x":1193.0,"scale":2.0,"y":65.0,"opacity":255},"btn_reload":{
+    "dif_by_init_data":false,"x":-256.0,"scale":1.2350000143051147,"y":223.0,"opacity":255},"pnl_free_view":{
+    "dif_by_init_data":false,"x":736.0,"scale":1.0,"y":382.0,"opacity":255},"pnl_btn_shot_left":{
+    "dif_by_init_data":false,"x":80.0,"scale":1.340000033378601,"y":353.0,"opacity":255},"btn_fuwuqi":{
+    "dif_by_init_data":false,"x":-235.0,"scale":1.3849999904632568,"y":369.0,"opacity":255},"btn_xuli":{
+    "x":12.0,"scale":1.0,"y":440.0,"opacity":255},"pnl_gongnengtubiao":{
+    "x":690.0,"scale":1.159999966621399,"y":197.0,"opacity":255},"btn_jump":{
+    "dif_by_init_data":false,"x":124.0,"scale":2.0,"y":298.0,"opacity":255},"pnl_wurenji_jineng02":{
+    "dif_by_init_data":false,"x":-248.0,"scale":1.0,"y":529.0,"opacity":255},"pnl_btn_zhuangbei":{
+    "dif_by_init_data":false,"x":-278.0,"scale":1.0,"y":498.0,"opacity":255},"pnl_jineng_zu":{
+    "btn_jineng_07":{
+    "x":-928.0,"scale":1.0399999618530273,"y":421.0,"opacity":255}},"btn_attack":{
+    "dif_by_init_data":false,"x":-47.0,"scale":1.5049999952316284,"y":259.0,"opacity":255},"pnl_wurenji_jineng":{
+    "dif_by_init_data":false,"x":-251.0,"scale":0.949999988079071,"y":527.0,"opacity":255},"pnl_gongnengtubiao_v1":{
+    "dif_by_init_data":false,"x":712.0,"scale":1.0,"y":214.0,"opacity":255},"pnl_beijing":{
+    "x":102.0,"scale":1.0,"y":254.0,"opacity":255},"btn_liudanpao":{
+    "dif_by_init_data":false,"x":-134.0,"scale":1.0,"y":457.0,"opacity":255},"pnl_danyaoxiang":{
+    "x":284.0,"scale":0.5,"y":22.0,"opacity":26},"panel_move":{
+    "dif_by_init_data":false,"x":267.0,"scale":1.4600000381469727,"y":216.0,"opacity":255},"pnl_yijian_list":{
+    "dif_by_init_data":false,"x":405.0,"scale":1.0,"y":206.0,"opacity":255},"btn_cancel":{
+    "x":474.0,"scale":1.1299999952316284,"y":458.0,"opacity":255},"btn_dingdian":{
+    "x":1437.0,"scale":1.4900000095367432,"y":65.0,"opacity":255},"pnl_kaijing":{
+    "x":390.0,"scale":1.0,"y":481.0,"opacity":255}},"PanelVehicleControlV2":{},"PanelCommonExit":{},"CombatPowerIcon":{},"PanelThrow":{},"ChangeFashionBtn":{},"PanelBtnFishBait":{}},"battle_mission_infos":"<mission(219036, PROGRESS)\n\tquest(<CheckRefreshedSomething b(False)-quest({'monster_record_ids': (998,)})-progress({count: 1})-DebugInfo:()>)\n\tbranch_quest(None)\n>","home_storage_info":{
+    "my_locked_ui_data":0,"is_asyncing_my_ui_data":false},"render_path":"deferred","weather_time":72000.0,"enable_fec":false,"weather":"Current: weather/bigworld/weather_sm_bg24_v20.xml","ui_size":{
+    "win_width":2772,"win_height":1288,"ui_height":750,"ui_width":1615},"cc_mini_info":{
+    "cc_engine_started":true,"client_state":2,"cc_session_status":{
+    "0":2,"1":2,"3":2},"cc_engine_inited":true},"panel_control_vih_info":"{'_hide_all': 0, 'default_hide_panels': \"{'btn_transform'}\", '_hide_all_excludes': {}, 'show_fight_ui': True}","pet_panel_info":{
+    "_can_show_panel":false,"vis":false,"pnl_pet":{
+    "x_ly":{
+    "wx":407.00000762939453,"width":1440.2164306640625,"x":407.0,"h_e":0},"scale":1.2949999570846558,"y_ly":{
+    "wy":732.0,"y":732.0,"v_e":0,"height":750.0},"opacity":255},"_debug_vis_info":"force_show[False], not (is_pet_show[False] or is_drone_show[False]) and global visible[True], G.ui.is_panel_visible(PanelPetTopRight)[True]","is_active_and_loaded":true,"pnl_dog_zhuangtai":{
+    "x_ly":{
+    "wx":343.5450210571289,"width":1440.2164306640625,"x":-49.0,"h_e":0},"scale":1.0399999618530273,"y_ly":{
+    "wy":778.6199951171875,"y":84.0,"v_e":0,"height":750.0},"opacity":255},"pnl_tips02":{
+    "x_ly":{
+    "wx":151.88501739501953,"width":1440.2164306640625,"x":-197.0,"h_e":0},"scale":1.024999976158142,"y_ly":{
+    "wy":830.4200439453125,"y":124.0,"v_e":0,"height":750.0},"opacity":255}},"model_priority_visible_dict":{
+    "1000":true},"client_position":[-198.2603759765625,146.28900146484375,-45.52698516845703],"can_hide_fight_ui":0,"control_btn_vis":{
+    "btn_mangju":{
+    "vis":false,"reason":"False - is_hide[False]","system_id":""},"cancel":"set()","btn_reborn_skill":{
+    "vis":false,"reason":"PanelControl._handle_target_panel_visible True-True-True-{'_hide_all': 0, 'default_hide_panels': \"{'btn_transform'}\", '_hide_all_excludes': {}, 'move_tips': (True, False, ['img_feizhu_icon', 'img_jump_feizhu_icon', 'img_feizhu_icon_s'], '')}","btn_baozi01_vis":true},"diffuser":{
+    "default":true},"reborn":{
+    "default":false},"btn_spore_use":{
+    "vis":false,"reason":"PlayerRaceBaseComp.update_reborn_spore_btn"},"btn_diffuser":{
+    "reason":"","vis":true,"pnl_shiyong_vis":true},"btn_fuwuqi":{
+    "vis":true,"reason":"","enabled":true},"tactic":{
+    "default":true}},"monster_model_info":{
+    "<AnimMissionMonster(aUFHwZHSJlBi3zsZ) monster_id=520022>":{
+    "valid":true,"priority_visible_dict":{},"visible":true,"load_time":0.21691393852233887,"alpha":255,"model":"aUFHwZHSJlBi3zsZ_model_233256","entity_position":[-329.5,180.5089874267578,-101.5999984741211],"model_position":"<-329.500000, 180.508987, -101.599998>"}},"attack_fire_info":{
+    "is_attack_btn_down":"False","current_weapon":"<'aTtWt0UFq2GtsVhy', 10584>","is_left_attack_btn_touch":"False","temp_removed_equipped":"{}","_debug_fire":"weapon_comp.begin_fire","is_attack_btn_touch":"False","is_attacking":"False","weapon_machine":"free","attack_pressed_stack":"","is_attack_btn_pressed":"False","is_auto_firing":"","is_left_attack_btn_pressed":"False","_debug_reset_weapon":"1765885631.8739789","temp_weapon":"None","is_manual_firing":"","auto_fire_condition":"None"},"physics_active":true,"screen_time":"2025-12-16 19:53:41","model_position":[-198.2603759765625,146.28900146484375,-45.52698516845703],"state_str":"state: {} pre_add:{} pre_del:{}, sub_state: {}","UIOptionalButtons":{
+    "buttons":"[('RadioButton', Vec2(0.000000, 0.000000)), ('PetButton', Vec2(56.000000, 0.000000))]","button_states":49152,"building_btn":{
+    "control_is_showing_building_btn":false,"pms_middle_bottom_active_panels":"set()"}},"recipe_no_permision_log":{},"mission_guide_icons":[{
+    "static_pos3d":"None","icon_cls":"TalkIcon"},{
+    "static_pos3d":"None","icon_cls":"TalkIcon"},{
+    "static_pos3d":"None","icon_cls":"IntegratedInteractIcon"},{
+    "static_pos3d":"None","icon_cls":"IntegratedFollowIcon"},{
+    "static_pos3d":"None","icon_cls":"TalkIcon"},{
+    "static_pos3d":"None","icon_cls":"TalkIcon"},{
+    "static_pos3d":"None","icon_cls":"IntegratedInteractIcon"},{
+    "static_pos3d":"None","icon_cls":"TalkIcon"},{
+    "static_pos3d":"None","icon_cls":"TalkIcon"},{
+    "static_pos3d":"None","icon_cls":"TalkIcon"},{
+    "static_pos3d":"None","icon_cls":"TalkIcon"},{
+    "static_pos3d":"None","icon_cls":"TalkIcon"},{
+    "static_pos3d":"None","icon_cls":"TalkIcon"},{
+    "static_pos3d":"None","icon_cls":"IntegratedFollowIcon"},{
+    "static_pos3d":"(-547.75, 97.9000015258789, 72.79000091552734)","icon_cls":"NormalIcon"}],"pms_vih_info":"{'_hide_all': 0, 'default_hide_panels': \"{'PanelPlayerGhoulBtn'}\", '_hide_all_excludes': {}}","pp_blur_priority_dict":{},"current_trace_mission":"","ui_mgr_vis_info":{
+    "should_hide_all_uis":false,"panels":"PanelLoading,PanelSign,PanelPlayerInfoWatermark,PanelHpChangeV2,PanelBtnMedicine,PanelLoverMarquee,PanelAimCross,PanelRotateTips,PanelMainScreen,PanelWeapons,PanelObjectReact,PanelPopup,PanelHpChange,PanelLockRun,PanelClientRecordPopup,PanelBtnFishBait,PanelMapLoading,PanelMissionGuideIndicator,PanelTopLeftInfomationSwitch,PanelTutorial,PanelPetTopRight,PanelCabin,PanelDronePos,PanelBossHp","_debug_flicker_info":[],"pms_invis_keys":"set()","vh_info":"{'_hide_all': 0, 'default_hide_panels': 'set()', '_hide_all_excludes': {}}","hide_all_uis_excludes":[],"debug_pms_vis":{}}},"new_schedule":2,"engine_git_ver":"2025_09_test_251212_a4a8d9428","newpc":0,"quality":4,"first_udid_v2":"02b44d4e797acfcc","photo_list":["http://mrzh.fp.ps.netease.com/file/694148a1fd218e0bdec439615bL8EmQf07"],"role_name":"白玲⼺玖枫","emulator":0,"app_channel":"netease","sa_log_uid":"aUFIoZHSJlBi32lQ","region":"cn","server":990094,"device_model":"#NOH-AN00#kirin#8#0#Mali-G78","content":"副本：墨洛维城堡：任务：将防守插板安装在门框上时无法安装，原因为：为弹出互动窗口。必现：复现方式：进行任务","lst_space_infos":"['18:57:49_aUE7JxFnvzw2WWzA_132', '18:58:29_aUE7U3yZ3QBNYGGd_407', '19:05:28_aUE897AapniCOudS_667', '19:10:42_aUE+JBFnvzw2WWzo_42', '19:11:26_aUE+XCdZEha/S+rZ_98', '19:20:44_aUE/F0qixmtJYtGJ_50', '19:21:34_aUFAvCdZEha/S+rv_98', '19:30:33_aUFC19i74zlabgaG_75', '19:42:00_aUFFhgGlCVdheD2U_96', '19:49:40_aUFHUk4MMCP8OGqh_219']","pos":[-198.2603759765625,146.28900146484375,-45.52698516845703],"probability_switches":{
+    "enable_panel_training_rank_result_opt":true,"enable_plant_state_tick_fix":true,"enable_panelcontrol_tick_opt":true,"enable_forest":true,"enable_equip_frame_start":true,"enable_cocos_update_in_thread":false,"enable_panel_bobj_module_info_opt":true,"enable_player_sign_onloaded_opt":true,"enable_weapon_state_changed_opt":true,"step_building_type_in_self":false,"enable_panel_menu_destroy_opt_recursive":true,"flamer_opt_setting_other":false,"enable_road_pre_model_opt":true,"enable_opt_update_jet_animation":true,"enable_pvp_delay_load_appears":true,"enable_equip_changed_opt":true,"enable_pve_mission_mgr_comp_scene_sign_opt":true,"enable_opt_panel_chat_lite":true,"enable_frame_bobj_enhance":false,"enable_mask_appears_loading_in_world":false,"enable_npc_talk_dialog_async_require":true,"enavble_sp_hunting_dyn_aoi":false,"enable_budget_add_map_icons":true,"enable_new_slots_optimize3":true,"enable_register_event_opt":true,"enable_trad_xiaer_dyn_aoi":false,"enable_on_model_loaded_opt":true,"space_node_opt_v2":true,"enable_frame_timer_limit_level_prob_switch":true,"enable_optimize_ray_cast_with_pruning":true,"enable_opt_map_icon_refresh":true,"enable_panel_bobj_storage_opt":true,"enable_opt_react_comp_react":true,"enable_map_icon_update_pos_opt":true,"enable_panel_kill_board_opt":true,"enable_panel_plant_weather_frame":true,"is_async_sprite_leak_fix_enabled":true,"enable_react_item_reuse_opt":true,"enable_mini_map_icon_opt":true,"enable_isolated_timer_mgr":true,"enable_hex_profile_abtest":true,"enable_chat_room_opt":true,"enable_big_world_dynamic":false,"enable_build_opt_2025":true,"enable_panel_dialog_frame":true,"enable_client_opt_monster_update_raw_data":true,"enable_skip_ctt_render":true,"enable_client_opt_1002_fire_sfx_cache":true,"enable_jank_trace":false,"enable_upload_log_to_loghub":true,"enable_change_weather_optimization":true,"enable_entity_frame_destroy":true,"enable_upload_log_to_loghub_probability":false,"enable_hp_energy_progress_lazy_spine":true,"enable_sakura_festival_opt":true,"enable_login_specified_ipv6_timeout":false,"enable_v3_hp_change_opt":false,"enable_current_stage_on_skill_space_gone":true,"enable_opt_physics_fall":true,"enable_huodong_red_opt":true,"enable_climb_tower_hd_red_opt":true,"enable_optimize_register_update":true,"enable_opt_do_set_weapon_anim":true,"enable_all_parts_loaded_opt":true,"is_blood_moon_line_1":false,"is_blood_moon_line_2":false,"enable_shortcut_opt":true,"enable_frame_execute_management_pve":true,"enable_commonly_used_main_screen_re_show":true,"enable_overload_high_frame_rate_fit":true,"enable_sign_on_lazy_loaded_framing":true,"enable_frame_execute_schedule_big_job":true,"enable_wp_auto_fire_tick_opt":true,"enable_move_touch_end_opt":true,"enable_frame_execute_use_sleep_time":true,"enable_spray_paint_comp_ctt_reuse":true,"enable_client_op_level_opt2":true,"enable_panel_new_dialog_frame":true,"enable_camera_comp_tick_opt":true,"enable_ui_move_control_tick_opt":true,"test_prob_switch":false,"enable_build_opt_1120":true,"enable_plant_tools_tick_optimize":true,"enable_rec_chips_opt":true,"enable_bone_matrix_pingpong":true,"enable_limit_gpu_bound_60fps":false,"enable_sound_init_opt":true,"enable_increase_low_frame_rate":false,"enable_mini_chat_opt":true,"enable_opt_on_animator_unloaded":true,"enable_chat_loaded_opt":true,"enable_build_comp_tick_opt_1023":true,"enable_new_server_hd_red_opt":true,"enable_on_cinematic_finish_opt":true,"enable_levin_dungeon_mission_opt":true,"enable_combat_sfx_opt":false,"enable_league_dungeo

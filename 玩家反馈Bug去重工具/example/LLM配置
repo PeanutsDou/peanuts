@@ -2,4 +2,8 @@
     LLM_APP_ID = "fob3ubx6yv5jxjag"
     LLM_APP_KEY = "x55ll082jpilelrdvv57lt1ocoao726v"
     LLM_BASE_URL = "https://aigw.nie.netease.com/v1" 
-    LLM_MODEL = "glm-4.5-flash"
+    LLM_MODEL = "glm-4.5-flash"                 免费但是速度比较慢，不太聪明，不能看图
+                "deepseek-v3.2-latest"          稍贵，速度比较快，比较聪明，不能看图
+                "qwen3-vl-plus/qwen3-vl-flash"  稍贵，但在能看图的模型里是比较便宜的，价格性能和deepseek-v3.2-latest差不多
+                "gemini-3-flash"                贵一点的看图模型
+                
