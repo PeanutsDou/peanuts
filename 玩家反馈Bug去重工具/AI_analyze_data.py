@@ -40,13 +40,14 @@ def find_latest_dedup_file():
     files.sort(key=os.path.getmtime)
     return files[-1]
 
-def analyze_subjects_with_llm(subjects, config):
+def analyze_subjects_with_llm(subjects, config, model_name=None):
     """
     调用 LLM (大语言模型) 对一组文本进行精细化语义分析和去重
     
     参数:
         subjects: 文本列表
         config: 配置字典
+        model_name: 指定使用的模型名称 (可选)
         
     返回:
         JSON 格式的结构化数据列表: [{ "representative": "...", "items": ["..."] }, ...]
@@ -55,7 +56,13 @@ def analyze_subjects_with_llm(subjects, config):
     app_id = llm_cfg.get("app_id", "")
     app_key = llm_cfg.get("app_key", "")
     base_url = llm_cfg.get("base_url", "").rstrip("/")
-    model = llm_cfg.get("model", "glm-4.5-flash")
+    
+    # 如果指定了 model_name 则使用，否则从配置读取默认 model
+    if model_name:
+        model = model_name
+    else:
+        model = llm_cfg.get("model", "glm-4.5-flash")
+        
     timeout = llm_cfg.get("timeout", 120)
     max_retries = llm_cfg.get("max_retries", 3)
     
@@ -73,28 +80,89 @@ def analyze_subjects_with_llm(subjects, config):
     
     # 构造 Prompt 内容
     # 限制每个条目的长度，防止 Token 溢出
+    # 将 scene name 前置到 subject 前面，增强 AI 的场景感知
+    content_list = []
+    for i, s in enumerate(subjects):
+        # 尝试从 subjects 原文中找回 scene name (这在之前的逻辑里没有传进来)
+        # 这里 subjects 只是 str list，我们可能需要修改调用方 analyze_single_cluster 传入更多信息
+        # 或者简单的，我们假设 subjects 里已经是处理过的字符串，或者我们在这里无法获取 scene name
+        # 等等，analyze_subjects_with_llm 只接收了 subjects 列表
+        
+        # 修正方案：
+        # 我们需要在 analyze_single_cluster 中，构造传给 LLM 的字符串时，把 scene name 拼进去
+        # 但 analyze_subjects_with_llm 的签名是 subjects list
+        # 为了不破坏签名，我们可以在 analyze_single_cluster 调用前，把 scene name 拼接到 subject 字符串里
+        # 例如: "[主城] 无法移动"
+        # 这样 LLM 就能看到了。然后返回的结果也是带 [主城] 的，我们需要在后处理时去掉吗？
+        # 提示词里说 "严禁修改"，所以代表条目会带上 [主城]。
+        # 这可能会影响后续的匹配 (match_row)，因为 match_row 里的 subject 是不带 [主城] 的。
+        
+        # 让我们看看 analyze_single_cluster 是怎么调用的
+        pass
+
     content_text = "\n".join([f"{i+1}. {str(s)[:500]}" for i, s in enumerate(subjects)])
     
     prompt = f"""
-你是一位资深游戏质量保证(QA)专家。以下是一组玩家反馈的Bug或建议（它们在预处理中被归为一个粗略的聚类）。
-请对这些反馈进行精细的语义分析，将它们进一步细分为具体的语义组。
-对于精细语义分析:
-1.要尽量分出包含2个及以上条目的语义组,对于聚类中的内容要尽量精简选择,允许存在一定的模糊性,也就是说,一些语义指向不明确的条目,但描述的内容或关键词有重合,就可以合并成组.
-对于每个语义组：
-1. 找出该组内描述最完整、信息量最大的一条作为“代表条目”（Representative）。
-2. 该组内其他条目视为重复/冗余，将被剔除。
+你是一名资深游戏测试专家。以下是一组经过初步筛选的玩家反馈（可能包含同类问题，也可能混入了无关条目）。
+请对这些反馈进行**精细化语义归类**。
 
-请返回一个 JSON 列表，列表中的每个元素代表一个语义组，包含两个字段：
-- "representative": 选出的代表条目原文。
-- "items": 该组内包含的所有条目原文列表（包含代表条目本身）。
+**核心原则：**
+1. **精准分组**：将描述**同一具体问题**的反馈归为一组。不要把仅是关键词相同但问题不同的反馈强行合并。
+2. **场景加权**：如果多条反馈的 **[场景名称]** 相同（如都标记为[主城]或[副本A]），它们描述同一问题的可能性更高，请优先考虑合并。
+3. **优选代表**：从每组中选出**信息量最大、表述最清晰、包含关键复现要素**的条目作为“代表条目”(Representative)。
+4. **全面覆盖**：输入列表中的**所有条目**都必须被分配到某个组中，不可遗漏。
+5. **包容模糊**：将描述笼统（如“卡了”）的条目归入最接近的具体问题组（如“主城传送卡顿”）中；如果无法归类，则单独成组。
 
-注意：
-- 必须包含输入列表中的所有条目，不要遗漏。
-- 如果某条目是独立的（不与其他重复），它自己构成一组，representative 就是它自己，items 也只包含它。
-- 保持原文，不要修改文本。
-- 请直接输出合法的 JSON 字符串，不要包含 Markdown 格式标记。
+**示例参考：**
 
-反馈列表：
+*案例1 (同类合并 - 笼统与具体)*
+输入：
+1. [未知场景] 游戏很卡
+2. [未知场景] 游戏一卡一卡的
+3. [未知场景] 游戏内异常卡顿
+4. [未知场景] 游戏存在卡顿问题，且修复延迟超过4天
+5. [未知场景] 游戏画面出现闪回现象
+输出：
+[
+  {{ "representative": "[未知场景] 游戏存在卡顿问题，且修复延迟超过4天", "items": ["[未知场景] 游戏很卡", "[未知场景] 游戏一卡一卡的", "[未知场景] 游戏内异常卡顿", "[未知场景] 游戏存在卡顿问题，且修复延迟超过4天"] }},
+  {{ "representative": "[未知场景] 游戏画面出现闪回现象", "items": ["[未知场景] 游戏画面出现闪回现象"] }}
+]
+*(注：通用的“卡顿”归为一组；“闪回”属于特定渲染Bug，虽相关但问题性质不同，故单独列出)*
+
+*案例2 (混合拆分 - 场景与现象不同)*
+输入：
+1. [迷失乐园] 划艇视角自动转动且划艇可能原地转圈
+2. [迷失乐园] 鳄鱼Boss战斗后鸭子船乱转
+3. [迷失乐园] 鸭子船在原地打转不前进
+4. [迷失乐园] 水变成方块水了，这bug啥时候修，而且鸭子船一直在转圈
+5. [迷失乐园] 水面反射不正常，像面镜子一样
+6. [高地工厂] 最后到boss前的动画没有水直接摔下来了
+7. [未知场景] 水池不会游泳了
+输出：
+[
+  {{ "representative": "[迷失乐园] 划艇视角自动转动且划艇可能原地转圈", "items": ["[迷失乐园] 划艇视角自动转动且划艇可能原地转圈", "[迷失乐园] 鳄鱼Boss战斗后鸭子船乱转", "[迷失乐园] 鸭子船在原地打转不前进"] }},
+  {{ "representative": "[迷失乐园] 水变成方块水了，这bug啥时候修，而且鸭子船一直在转圈", "items": ["[迷失乐园] 水变成方块水了，这bug啥时候修，而且鸭子船一直在转圈", "[迷失乐园] 水面反射不正常，像面镜子一样"] }},
+  {{ "representative": "[高地工厂] 最后到boss前的动画没有水直接摔下来了", "items": ["[高地工厂] 最后到boss前的动画没有水直接摔下来了"] }},
+  {{ "representative": "[未知场景] 水池不会游泳了", "items": ["[未知场景] 水池不会游泳了"] }}
+]
+*(注：根据【场景】(迷失乐园 vs 高地工厂) 和 【核心现象】(鸭子船转圈 vs 水体渲染异常 vs 动画缺失) 进行拆分。混合描述如条目4，如果同时包含两个问题，可归入其中一个主要组，或根据语境归类)*
+
+*案例3 (层级归纳)*
+输入：
+1. [全局] 游戏很卡
+2. [主城] 进主城特别卡
+3. [主城] 每次传送回主城都要卡顿3秒
+输出：
+[
+  {{ "representative": "每次传送回主城都要卡顿3秒", "items": ["[全局] 游戏很卡", "[主城] 进主城特别卡", "[主城] 每次传送回主城都要卡顿3秒"] }}
+]
+
+**任务要求：**
+请直接返回JSON列表，列表元素包含：
+- "representative": 选出的代表条目原文（必须来自输入列表，**严禁修改**）。
+- "items": 该组内包含的所有条目原文列表。
+
+**反馈列表：**
 {content_text}
 """
     input_chars = len(prompt)
@@ -181,19 +249,104 @@ def analyze_single_cluster(args):
     output_chars = 0
     
     if reasons:
+        # 准备带有场景信息的 subject 列表传给 LLM
+        subjects_for_llm = []
+        # 建立 映射: 带场景的subject -> 原始subject
+        # 注意：如果同一个 subject 有不同的场景 (极少见，因为是聚类组内)，可能会有冲突，但组内通常是相似的
+        # 为了安全，我们只在传给 LLM 时拼接，返回后再映射回来
+        
+        # 更好的方法：修改 analyze_subjects_with_llm 接受 (subject, scene_name) 的元组，或者直接在外面拼好
+        # 这里我们在外面拼好
+        llm_input_map = {} # formatted_subj -> original_subj
+        
+        for subj in subjects:
+            # 找到对应的行
+            # 注意：group['subject'] 可能有重复，但这里 subjects 是 list，我们按顺序或值匹配
+            # 为了准确获取 scene name，我们需要遍历 group
+            # 但 group 可能有多行对应同一个 subject
+            rows = group[group['subject'].astype(str) == subj]
+            scene_name = ""
+            if not rows.empty:
+                # 优先取非空的 scene name
+                valid_scenes = rows['scene name'].dropna().astype(str)
+                valid_scenes = valid_scenes[valid_scenes.str.strip() != ""]
+                if not valid_scenes.empty:
+                    scene_name = valid_scenes.iloc[0]
+            
+            if scene_name:
+                formatted = f"[{scene_name}] {subj}"
+            else:
+                formatted = f"[未知场景] {subj}"
+            
+            subjects_for_llm.append(formatted)
+            llm_input_map[formatted] = subj
+            
+        # 判定使用的模型
+        # 逻辑: 小于内聚度阈值 且 聚类数 > 阈值(默认5) -> 使用 review_model (deepseek)
+        llm_settings = config.get("llm_settings", {})
+        large_cluster_threshold = llm_settings.get("ai_large_cluster_threshold", 5)
+        
+        target_model = None
+        # 注意: reasons 列表是基于 (count > threshold) 和 (count > 1 and cohesion < cohesion_threshold) 生成的
+        # 这里我们需要显式判断条件
+        is_low_cohesion = (count > 1 and cohesion < cohesion_threshold)
+        is_large_cluster = (count > large_cluster_threshold)
+        
+        if is_low_cohesion and is_large_cluster:
+            target_model = llm_settings.get("review_model", "deepseek-v3.2-latest")
+            # print(f"  [Cluster {cid}] 触发 DeepSeek 分析 (Count={count}, Cohesion={cohesion:.2f})")
+            
         # 满足条件，调用 AI 进行精细分析
-        ai_groups, in_c, out_c = analyze_subjects_with_llm(subjects, config)
+        ai_groups, in_c, out_c = analyze_subjects_with_llm(subjects_for_llm, config, model_name=target_model)
         input_chars += in_c
         output_chars += out_c
         
         handled_subjects = set()
         
         for grp in ai_groups:
-            rep_subj = grp.get('representative', '')
-            items = grp.get('items', [])
+            rep_formatted = grp.get('representative', '')
+            items_formatted = grp.get('items', [])
+            
+            # 还原回原始 subject
+            rep_subj = llm_input_map.get(rep_formatted)
+            
+            # 如果还原失败 (AI 修改了文本)，尝试模糊匹配
+            if not rep_subj:
+                # 尝试去掉 [xxx] 前缀
+                clean_rep = re.sub(r'^\[.*?\]\s*', "", rep_formatted)
+                if clean_rep in subjects:
+                    rep_subj = clean_rep
+                else:
+                    # 还是找不到，可能是 AI 幻觉，或者选取了不存在的。
+                    # 兜底：在 input map values 里找最像的，或者跳过
+                    # 这里简单处理：如果 items 有效，取 items 第一个作为 rep
+                    pass
+
+            # 重新构建 items 列表 (原始 subject)
+            real_items = []
+            if items_formatted: # 确保 items_formatted 不为空
+                for item_fmt in items_formatted:
+                    real_item = llm_input_map.get(item_fmt)
+                    if not real_item:
+                         clean_item = re.sub(r'^\[.*?\]\s*', "", item_fmt)
+                         if clean_item in subjects:
+                             real_item = clean_item
+                    
+                    if real_item:
+                        real_items.append(real_item)
+            
+            # 如果 rep_subj 没找到，尝试从 real_items 中恢复
+            if not rep_subj and real_items:
+                rep_subj = real_items[0]
+            
+            # 记录详细日志 (在这里使用 items，所以要确保 items 已经解析)
+            # 注意：这里的 items 应该是 real_items，即原始 subjects
+            # 如果之前的代码直接使用了 items (即 items_formatted)，在循环外可能会导致 items 未定义
             
             if not rep_subj: continue
                 
+            # --- 以下逻辑使用 rep_subj (原始) 进行后续处理 ---
+            
             # 尝试找回对应的图片 URL 和 task_id
             # 优先从代表条目对应的行中获取
             match_row = group[group['subject'].astype(str) == rep_subj]
@@ -212,7 +365,7 @@ def analyze_single_cluster(args):
                 # 如果代表条目没找到图，尝试从同组其他条目中找一张图作为代表
                 # 尽量找 needs_image=Yes 的
                 found = False
-                for item_subj in items:
+                for item_subj in real_items:
                     m_row = group[group['subject'].astype(str) == item_subj]
                     if not m_row.empty:
                         row = m_row.iloc[0]
@@ -243,12 +396,15 @@ def analyze_single_cluster(args):
                 "image": img,
                 "needs_image": needs_image,
                 "needs_image_reason": needs_image_reason,
+                "scene": row.get('scene', ''),
+                "scene name": row.get('scene name', ''), # 确保 scene name 传递
+                "pos": row.get('pos', ''), # 确保 pos 传递
                 "cluster_id": cid
             }
             cluster_results.append(res_item)
             
             # 记录详细日志
-            for item in items:
+            for item in real_items:
                 handled_subjects.add(item)
                 if item == rep_subj:
                     cluster_logs.append({
@@ -277,6 +433,8 @@ def analyze_single_cluster(args):
                      "image": row.get('image', ''),
                      "needs_image": row.get('needs_image', ''),
                      "needs_image_reason": row.get('needs_image_reason', ''),
+                     "scene": row.get('scene', ''),
+                     "scene name": row.get('scene name', ''), # 确保 scene name 传递
                      "cluster_id": cid
                  })
                  cluster_logs.append({
@@ -299,6 +457,9 @@ def analyze_single_cluster(args):
             "image": representative_row.get('image', ''),
             "needs_image": representative_row.get('needs_image', ''),
             "needs_image_reason": representative_row.get('needs_image_reason', ''),
+            "scene": representative_row.get('scene', ''),
+            "scene name": representative_row.get('scene name', ''), # 确保 scene name 传递
+            "pos": representative_row.get('pos', ''),
             "cluster_id": cid
         })
         
@@ -394,7 +555,9 @@ def run_ai_analysis(df_input=None, extra_logs=None):
             "subject": row['subject'],
             "image": row.get('image', ''),
             "needs_image": row.get('needs_image', ''),
-            "needs_image_reason": row.get('needs_image_reason', '')
+            "scene": row.get('scene', ''),
+            "scene name": row.get('scene name', ''), # 确保 scene name 传递
+            "pos": row.get('pos', '')
         })
         ai_logs.append({
             "cluster_id": -1,
@@ -488,9 +651,9 @@ def run_ai_analysis(df_input=None, extra_logs=None):
 
     df_final_output = pd.DataFrame(final_results)
     
-    # 调整列顺序: task_id, subject, image, needs_image
+    # 调整列顺序: task_id, subject, image, needs_image, scene name, scene, pos
     # 移除 needs_image_reason
-    cols_order = ['task_id', 'subject', 'image', 'needs_image']
+    cols_order = ['task_id', 'subject', 'image', 'needs_image', 'scene name', 'scene', 'pos']
     # 确保所有列存在
     for c in cols_order:
         if c not in df_final_output.columns:

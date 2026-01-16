@@ -84,16 +84,18 @@ def call_llm_image_check(items, config):
     }
     
     prompt = """
-请判断以下Bug描述是否需要查看截图/图片来辅助定位。
+判断Bug描述是否需查看截图辅助定位。
 
-**判断标准（非常严格，克制看图）：**
-1. **必须看图**：描述中没有任何具体信息（如"如图"、"看图"、"这啥"），完全依赖图片。
-2. **必须看图**：描述有Bug信息，但缺乏关键定位信息（如只说"太卡了"、"模型坏了"、"这里有Bug"），且没有提到具体的地图、NPC、道具或时间点。
-3. **可能看图**：字数极少（<10字）且信息模糊。
-4. **不需要看图**：描述清晰，包含具体位置、道具名、NPC名或详细的Bug现象。
-5. **不需要看图**：字数>10字，且包含一定信息量。
+标准(严格克制)：
+1. 必须看图：描述为空、"如图"、"看图"或缺乏关键定位信息(无地图/NPC/道具/时间)。
+2. 不需要看图：描述清晰，含具体位置、名称或详细现象。
 
-**Input List:**
+示例：
+- "如图" -> {"needs_image": true, "reason": "完全依赖图片"}
+- "玩着玩着卡死了" -> {"needs_image": true, "reason": "缺乏场景定位"}
+- "主城铁匠对话后卡死" -> {"needs_image": false, "reason": "定位清晰"}
+
+Input List:
 """
     for item in items:
         # 限制长度防止超 token
@@ -101,9 +103,9 @@ def call_llm_image_check(items, config):
         prompt += f"ID_{item['id']}: {subj}\n"
         
     prompt += """
-**Output Format (JSON only):**
+Output (JSON only):
 {
-  "ID_x": {"needs_image": true/false, "reason": "详细理由"},
+  "ID_x": {"needs_image": true/false, "reason": "简短理由"},
   ...
 }
 """
@@ -113,7 +115,7 @@ def call_llm_image_check(items, config):
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
         "temperature": 0.1,
-        "max_tokens": 2000,
+        "max_tokens": 1000,
         "response_format": {"type": "json_object"} # 如果支持的话
     }
     
@@ -173,7 +175,15 @@ def run_image_check_batch(items_list, config):
     with ThreadPoolExecutor(max_workers=5) as executor:
         futures = {executor.submit(call_llm_image_check, batch, config): batch for batch in batches}
         
-        for future in as_completed(futures):
+        # 尝试引入 tqdm 显示进度
+        try:
+            from tqdm import tqdm
+            iter_futures = tqdm(as_completed(futures), total=len(futures), desc="AI图片需求分析")
+        except ImportError:
+            iter_futures = as_completed(futures)
+            print("提示: 安装 tqdm 可显示进度条 (pip install tqdm)")
+
+        for future in iter_futures:
             try:
                 # call_llm_image_check 现在返回 (result_dict, in_chars, out_chars)
                 batch_res, in_c, out_c = future.result()

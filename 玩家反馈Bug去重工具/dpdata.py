@@ -294,7 +294,12 @@ def run_deduplication(input_data=None, extra_sheets=None):
                             # 尝试保存临时向量文件供 run_review 使用
                             try:
                                 import numpy as np # 确保 numpy 被导入
-                                tmp_emb_path = f"temp_emb_batch_{batch_id}.npy"
+                                # 将临时文件存放到 cache 目录，避免污染根目录
+                                cache_dir = os.path.join(_script_dir(), "cache")
+                                if not os.path.exists(cache_dir):
+                                    os.makedirs(cache_dir, exist_ok=True)
+                                    
+                                tmp_emb_path = os.path.join(cache_dir, f"temp_emb_batch_{batch_id}.npy")
                                 np.save(tmp_emb_path, b_emb)
                                 b_clustered, review_logs = run_review(b_clustered, tmp_emb_path)
                                 if review_logs:

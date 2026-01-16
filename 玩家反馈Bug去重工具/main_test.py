@@ -30,42 +30,70 @@ def main_test():
     """
     total_start_time = time.time()
     print("=" * 40)
-    print("    玩家反馈Bug去重工具 - 测试模式启动    ")
+    print("    玩家反馈Bug去重工具 - 测试模式启动 (v2026.01.15)   ")
     print("=" * 40)
     
     print("\n请选择测试模式:")
     print("1. 随机抽样测试 (输入数量，从全部数据中随机抽取)")
     print("2. 固定采样测试 (输入Excel路径，直接使用该文件数据)")
     print("3. 关键字采样测试 (输入关键词，筛选包含关键词的条目)")
+    print("4. 仅清洗数据测试 (不进行去重，直接输出清洗结果)")
     
-    mode = input("\n请输入模式编号 (1/2/3): ").strip()
+    mode = input("\n请输入模式编号 (1/2/3/4): ").strip()
     
-    # 询问是否跳过 AI 预处理步骤
+    # 询问是否跳过 AI 预处理步骤 (仅对 1-3 模式有效，模式4直接输出)
     skip_norm = False
-    skip_img = True # 默认跳过图片检查
+    skip_img = True 
     
-    print("\n[AI 预处理配置]")
-    # 语义规范化
-    norm_choice = input("是否跳过 [语义规范化] (y/n, 默认 n): ").strip().lower()
-    if norm_choice == 'y':
-        skip_norm = True
-        print("-> 已设置: 跳过语义规范化")
-    else:
-        print("-> 已设置: 执行语义规范化 (默认)")
-        
-    # 图片分析
-    img_choice = input("是否跳过 [图片查看分析] (y/n, 默认 y): ").strip().lower()
-    if img_choice == 'n':
-        skip_img = False
-        print("-> 已设置: 执行图片查看分析")
-    else:
-        print("-> 已设置: 跳过图片查看分析 (默认)")
+    if mode in ['1', '2', '3']:
+        print("\n[AI 预处理配置]")
+        # 语义规范化
+        norm_choice = input("是否跳过 [语义规范化] (y/n, 默认 n): ").strip().lower()
+        if norm_choice == 'y':
+            skip_norm = True
+            print("-> 已设置: 跳过语义规范化")
+        else:
+            print("-> 已设置: 执行语义规范化 (默认)")
+            
+        # 图片分析
+        img_choice = input("是否跳过 [图片查看分析] (y/n, 默认 y): ").strip().lower()
+        if img_choice == 'n':
+            skip_img = False
+            print("-> 已设置: 执行图片查看分析")
+        else:
+            print("-> 已设置: 跳过图片查看分析 (默认)")
 
     cleaned_df = None
     
     # --- 数据准备阶段 ---
     
-    if mode == '1':
+    if mode == '4':
+        # 模式 4: 仅清洗
+        print("\n正在执行纯数据清洗...")
+        cleaning_result = run_cleaning()
+        
+        if cleaning_result["success"] and "cleaned_df" in cleaning_result:
+            df = cleaning_result['cleaned_df']
+            if df is not None and not df.empty:
+                # 输出清洗结果
+                output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "cleandata")
+                if not os.path.exists(output_dir):
+                    os.makedirs(output_dir)
+                
+                output_path = os.path.join(output_dir, f"test_cleaning_result_{pd.Timestamp.now().strftime('%Y%m%d_%H%M%S')}.xlsx")
+                df.to_excel(output_path, index=False)
+                print(f"\n[完成] 清洗后的数据已保存至: {output_path}")
+                print(f"总条目数: {len(df)}")
+                print("Task ID 映射表已更新至 rawdata 目录。")
+                return
+            else:
+                print("清洗结果为空。")
+                return
+        else:
+            print(f"数据清洗失败: {cleaning_result.get('message')}")
+            return
+
+    elif mode == '1':
         # 模式 1: 随机抽样
         limit = None
         try:

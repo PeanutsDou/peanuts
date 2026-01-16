@@ -37,7 +37,7 @@
   "llm_settings": {
     "enabled": true,
     "ai_analyze_threshold": 10,
-    "ai_cohesion_threshold": 0.93,
+    "ai_cohesion_threshold": 0.95,
     "app_id": "fob3ubx6yv5jxjag",
     "app_key": "x55ll082jpilelrdvv57lt1ocoao726v",
     "base_url": "https://aigw.nie.netease.com/v1",

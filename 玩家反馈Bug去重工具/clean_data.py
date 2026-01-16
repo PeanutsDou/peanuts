@@ -2,6 +2,7 @@
 import os
 import json
 import shutil
+import re
 import pandas as pd
 import hashlib
 import time
@@ -101,6 +102,60 @@ def read_file_content(path):
         print(f"读取文件失败: {path}, 错误: {e}")
         return None
 
+def extract_scene_pos(row, ftype):
+    """
+    根据数据类型提取 scene 和 pos
+    """
+    scene = ""
+    pos = ""
+    
+    try:
+        if ftype == "QData":
+            # 从 '日志原文' 提取
+            content = str(row.get('raw_log', ''))
+            # if random.random() < 0.05: print(f"DEBUG QData content: {content[:100]}")
+            
+            # 提取 scene (兼容单双引号)
+            scene_match = re.search(r'["\']scene["\']\s*[:=]\s*["\']?([^"\',\}]+)["\']?', content)
+            if scene_match:
+                scene = scene_match.group(1)
+            
+            # 提取 pos (兼容单双引号)
+            # 优先找 3D 坐标 (3个数字)
+            # 查找所有匹配
+            pos_matches = re.findall(r'["\']pos["\']\s*[:=]\s*(\[[^\]]+\])', content)
+            if pos_matches:
+                # 尝试找到包含3个浮点数的项
+                found_3d = False
+                for p in pos_matches:
+                    # 简单判断是否含有2个逗号
+                    if p.count(',') == 2:
+                        pos = p
+                        found_3d = True
+                        break
+                
+                # 如果没找到3D的，就取最后一个 (通常是 entity_position 或 player pos)
+                if not found_3d:
+                    pos = pos_matches[-1]
+                
+        elif ftype == "BugFeedback":
+            # 从 '描述' 提取
+            content = str(row.get('raw_desc', ''))
+            # if random.random() < 0.01: print(f"DEBUG BugFeedback content: {content[:100]}")
+            
+            # 提取 scene: "问题出现场景：xxx"
+            scene_match = re.search(r"问题出现场景[：:]\s*(.*?)(?:[\r\n]|$)", content)
+            if scene_match:
+                scene = scene_match.group(1).strip()
+            
+            # pos 设为空白
+            pos = ""
+            
+    except Exception as e:
+        pass
+        
+    return pd.Series([scene, pos])
+
 def detect_type_and_extract(df, mapping, filename):
     """
     根据列名自动探测数据类型并提取数据
@@ -142,6 +197,32 @@ def detect_type_and_extract(df, mapping, filename):
             
             extracted_df = df[selected_cols].copy()
             extracted_df.rename(columns=rename_map, inplace=True)
+            
+            # --- 增强: 提取 scene 和 pos ---
+            if type_name == "QData" and "日志原文" in df.columns:
+                extracted_df['raw_log'] = df["日志原文"]
+            elif type_name == "BugFeedback" and "描述" in df.columns:
+                extracted_df['raw_desc'] = df["描述"]
+
+            # 执行提取
+            try:
+                extracted_vals = extracted_df.apply(
+                    lambda row: extract_scene_pos(row, type_name), axis=1
+                )
+                extracted_df['scene'] = extracted_vals[0]
+                extracted_df['pos'] = extracted_vals[1]
+                # print(f"DEBUG: {type_name} - scene/pos extracted. Columns: {extracted_df.columns}")
+            except Exception as e:
+                # print(f"DEBUG: Extraction failed: {e}")
+                extracted_df['scene'] = ""
+                extracted_df['pos'] = ""
+            
+            # 清理临时列
+            if 'raw_log' in extracted_df.columns:
+                extracted_df.drop(columns=['raw_log'], inplace=True)
+            if 'raw_desc' in extracted_df.columns:
+                extracted_df.drop(columns=['raw_desc'], inplace=True)
+             
             return type_name, extracted_df
 
     return None, None
@@ -214,6 +295,8 @@ def process_data(items, cfg):
                 new_records[ftype] = str(current_max_time)
 
         new_df["source_type"] = ftype
+        # 记录来源文件
+        new_df["source_file"] = fname
         all_data.append(new_df)
 
     if not all_data:
@@ -226,6 +309,21 @@ def process_data(items, cfg):
     # 为了方便后续吸附，ID从10001开始
     task_ids = range(10001, 10001 + len(final_df))
     final_df.insert(0, 'task_id', task_ids)
+    
+    # --- 生成 Task ID 映射表 ---
+    try:
+        mapping_df = final_df[['task_id', 'source_file']].copy()
+        # 存放在 rawdata 目录下
+        rawdata_dir = cfg.get("rawdata_dir_name", "rawdata")
+        mapping_path = os.path.join(_script_dir(), rawdata_dir, "task_id_mapping.xlsx")
+        # 如果 rawdata 不存在，确保存在
+        if not os.path.exists(os.path.dirname(mapping_path)):
+             os.makedirs(os.path.dirname(mapping_path), exist_ok=True)
+             
+        mapping_df.to_excel(mapping_path, index=False)
+        print(f"Task ID 映射表已生成: {mapping_path}")
+    except Exception as e:
+        print(f"生成 Task ID 映射表失败: {e}")
     
     end_time = time.time()
     print(f"清洗阶段耗时: {end_time - start_time:.2f}秒")
@@ -286,6 +384,113 @@ def run():
             "rawdata_dir": rawdir,
             "config_path": os.path.join(_script_dir(), "json", "config.json")
         }
+
+    # --- 新增: 场景名称分析 (Scene Name Analysis) ---
+    # 调用 scene_analysis 模块，为 DataFrame 增加 'scene name' 列
+    try:
+        from scene_analysis import infer_scene_name_requests
+        
+        # 仅对有 scene ID 的进行分析
+        if 'scene' in cleaned_df.columns:
+            # 过滤出有效的 scene ID
+            valid_scenes_df = cleaned_df[cleaned_df['scene'].notna() & (cleaned_df['scene'].astype(str).str.strip() != "")]
+            unique_scenes = valid_scenes_df['scene'].unique()
+            
+            if len(unique_scenes) > 0:
+                print(f"检测到 {len(unique_scenes)} 个场景ID，开始分析场景名称...")
+                
+                # 准备 LLM 配置
+                llm_cfg = cfg.get("llm_settings", {})
+                if llm_cfg.get("enabled", False):
+                    app_id = llm_cfg.get("app_id", "")
+                    app_key = llm_cfg.get("app_key", "")
+                    base_url = llm_cfg.get("base_url", "").rstrip("/")
+                    model = llm_cfg.get("review_model", llm_cfg.get("model", "glm-4.5-flash"))
+                    
+                    auth_key = f"{app_id}.{app_key}" if app_id else app_key
+                    headers = {
+                        "Authorization": f"Bearer {auth_key}",
+                        "Content-Type": "application/json"
+                    }
+                    
+                    # 遍历分析
+                    from difflib import SequenceMatcher
+                    # 用于去重的缓存: name -> (count, scene_id)
+                    checked_names = {} 
+                    # 结果映射: scene_id -> scene_name
+                    scene_names = {}
+                    
+                    # 尝试引入 tqdm
+                    try:
+                        from tqdm import tqdm
+                        iter_scenes = tqdm(enumerate(unique_scenes), total=len(unique_scenes), desc="场景名称推测")
+                    except ImportError:
+                        iter_scenes = enumerate(unique_scenes)
+                        print("建议安装 tqdm 以显示进度条: pip install tqdm")
+
+                    for i, scene_id in iter_scenes:
+                        # 获取该场景下的所有 subject 用于分析
+                        s_subjects = valid_scenes_df[valid_scenes_df['scene'] == scene_id]['subject'].tolist()
+                        s_subjects = list(set(s_subjects)) # 去重
+                        count = len(s_subjects)
+                        
+                        # 调用 scene_analysis 中的函数
+                        # print(f"  [{i+1}/{len(unique_scenes)}] 分析场景 {scene_id}...", end="", flush=True)
+                        name = infer_scene_name_requests(scene_id, s_subjects, base_url, headers, model)
+                        # print(f" -> {name}")
+                        
+                        # --- 简易去重机制 ---
+                        best_match_name = None
+                        best_ratio = 0.0
+                        
+                        for existing_name in checked_names.keys():
+                            ratio = SequenceMatcher(None, name, existing_name).ratio()
+                            if ratio > best_ratio:
+                                best_ratio = ratio
+                                best_match_name = existing_name
+                        
+                        final_name = name
+                        
+                        if best_ratio > 0.3: # 阈值 30%
+                            existing_info = checked_names[best_match_name]
+                            existing_count = existing_info["count"]
+                            
+                            if count > existing_count:
+                                # 当前场景条目更多，以当前名字为准
+                                for sid in existing_info["scene_ids"]:
+                                    scene_names[sid] = name
+                                
+                                del checked_names[best_match_name]
+                                existing_info["count"] += count
+                                existing_info["scene_ids"].append(scene_id)
+                                checked_names[name] = existing_info
+                                final_name = name
+                            else:
+                                # 已有场景条目更多，以已有名字为准
+                                final_name = best_match_name
+                                existing_info["count"] += count
+                                existing_info["scene_ids"].append(scene_id)
+                        else:
+                            checked_names[name] = {"count": count, "scene_ids": [scene_id]}
+                            
+                        scene_names[scene_id] = final_name
+                        
+                        time.sleep(0.2) # 避免限流
+                    
+                    # 回填结果
+                    cleaned_df['scene name'] = cleaned_df['scene'].map(scene_names)
+                    print("场景名称分析完成，已回填至 'scene name' 列。")
+                else:
+                    print("LLM 未启用，跳过场景名称分析。")
+                    cleaned_df['scene name'] = ""
+            else:
+                cleaned_df['scene name'] = ""
+        else:
+            cleaned_df['scene name'] = ""
+            
+    except Exception as e:
+        print(f"场景名称分析过程中出错: {e}")
+        cleaned_df['scene name'] = ""
 
     # 3. 准备输出
     is_test = cfg.get("isTest", False)
